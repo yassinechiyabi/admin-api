@@ -30,6 +30,21 @@ class liste_entreprise_controller extends Controller
         
     }
 
+    public function updateList(Request $request){
+        $liste=liste_entreprise::find($request['id_list']);
+        if($liste==!null){
+            foreach($request['elements'] as $company){
+                if(!liste_element::where('id_entreprise','=',$company)->where('id_liste_entreprise','=',$request['id_list'])->exists()){
+                    $element=new liste_element();
+                    $element->id_liste_entreprise=$liste->id;
+                    $element->id_entreprise=$company;
+                    if($element->save()){echo "Element ".$company ." créer - ";}
+                    $element=null;
+                }
+            }
+        }
+    }
+
     public function showAll(){
         return response()->json(liste_entreprise::all()->where('id_user',Auth::id())->values());
     }

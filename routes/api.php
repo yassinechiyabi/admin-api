@@ -7,7 +7,7 @@ use App\Http\Controllers\liste_entreprise_controller;
 use App\Http\Controllers\formulaireController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\typeEntrepriseController;
-
+use App\Http\Controllers\factureController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -26,12 +26,14 @@ use App\Http\Controllers\typeEntrepriseController;
 
 Route::post('submitEntreprise',[ entrepriseController::class,'store']);
 Route::post('createList',[ liste_entreprise_controller::class,'store']);
+Route::post('updateList',[ liste_entreprise_controller::class,'updateList']);
 Route::post('searchFilter',[ entrepriseController::class,'filter']);
 Route::post('submitFormulaire',[ formulaireController::class,'store']);
 Route::post('getFormulaireList',[ entrepriseController::class,'showByList']);
 Route::post('registerUser',[ userController::class,'store']);
 Route::post('login',[ userController::class,'authenticate']);
 Route::post('updateUser',[ userController::class,'updateUser']);
+Route::get('getAllFacture',[ factureController::class,'getAllFacture']);
 Route::get('getCountInitValueByMonth',[ formulaireController::class,'getCountInitValueByMonth']);
 Route::get('logout',[ userController::class,'logout']);
 Route::get('getCurrentUserRole',[ userController::class,'getCurrentUserRole']);
